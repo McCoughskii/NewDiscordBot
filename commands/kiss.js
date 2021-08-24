@@ -1,17 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const logger = require('../modules/logger');
-const fs = require('fs');
+const Tenor = require("../modules/search");
 
-let kissGifs = ["https://c.tenor.com/0E_odieuKmwAAAAC/anime-zero.gif","https://c.tenor.com/Ct9yIxN5nE0AAAAM/kiss-anime.gif","https://c.tenor.com/16MBIsjDDYcAAAAC/love-cheek.gif", "https://c.tenor.com/_ttVgUDKJL0AAAAC/anime-couple.gif", "https://c.tenor.com/ErAPuiWY46QAAAAC/kiss-anime.gif"]
-fs.readFile("./gifs/kiss.txt", 'utf8', (err, data) => {
-    if (err) {
-        throw err;
-    }
-    array = data.split(',');
-    kissGifs = array;
-});
-
-logger.log(`Loaded ${kissGifs.length} kissing gifs`, "debug");
+Tenor.startup("Anime Kiss", "kiss");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -26,11 +16,11 @@ module.exports = {
         const author = interaction.user;
         const target = interaction.options.getUser('target');
 
-        const file = kissGifs[Math.floor(Math.random() * kissGifs.length )]
+        const file = await Tenor.random("kiss");
 
         if (author == target) return interaction.reply({content: `${author} kissed themself`, files: [file]});
-
-        interaction.reply({content: `${author} kissed ${target}`, files: [file]});
+        
+        await interaction.reply({content: `${author} kissed ${target}`, files: [file]});
         
     },
 }

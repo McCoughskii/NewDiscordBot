@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const logger = require('../modules/logger');
-const boop = ["https://c.tenor.com/HZWeNnmcbBYAAAAC/cat-boop.gif", "https://c.tenor.com/G5u3bfszOPMAAAAC/anime-picking-nose.gif", "https://c.tenor.com/jNLEPcLWvO8AAAAC/anime-nose.gif", "https://c.tenor.com/fxIMcE41WpgAAAAd/anime-boop.gif", "https://c.tenor.com/4OHxyGd4qp0AAAAC/boop-nose.gif", ]
-logger.log(`Loaded ${boop.length} boop gifs`, "debug");
+const Tenor = require("../modules/search");
+
+Tenor.startup("Anime nose boop", "boop")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,7 +16,7 @@ module.exports = {
         const author = interaction.user;
         const target = interaction.options.getUser('target');
 
-        const file = boop[Math.floor(Math.random() * boop.length )]
+        const file = await Tenor.random("boop")
 
         if (author == target) return interaction.reply({content: `${author} booped themself`, files: [file]});
 

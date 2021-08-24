@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const logger = require('../modules/logger');
-const patGifs = ["https://c.tenor.com/4cE1PZZuPjkAAAAM/anime-cute.gif", "https://c.tenor.com/zBPha3hhm7QAAAAC/anime-girl.gif", "https://c.tenor.com/EYhRCNjiyIYAAAAC/momokuri-anime-pat.gif", "https://c.tenor.com/jEfC8cztigIAAAAC/anime-pat.gif", "https://c.tenor.com/8DaE6qzF0DwAAAAC/neet-anime.gif", "https://c.tenor.com/wLqFGYigJuIAAAAC/mai-sakurajima.gif", "https://c.tenor.com/rZRQ6gSf128AAAAC/anime-good-girl.gif", "https://c.tenor.com/dmYhPDHbbI4AAAAC/misha-misha-necron-anos-voldigoad-the-misfit-of-demon-king-academy-headpat-pat.gif" ]
-logger.log(`Loaded ${patGifs.length} patting gifs`, "debug");
+const Tenor = require("../modules/search");
+
+Tenor.startup("Anime Pat", "pat");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,7 +16,7 @@ module.exports = {
         const author = interaction.user;
         const target = interaction.options.getUser('target');
 
-        const file = patGifs[Math.floor(Math.random() * patGifs.length )]
+        const file = await Tenor.random("pat");
 
         if (author == target) return interaction.reply({content: `${author} gave pets to themselves`, files: [file]});
 

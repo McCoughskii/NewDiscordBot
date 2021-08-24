@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const logger = require('../modules/logger');
-const hugGifs = ["https://c.tenor.com/ItpTQW2UKPYAAAAM/cuddle-hug.gif", "https://c.tenor.com/1T1B8HcWalQAAAAC/anime-hug.gif", "https://c.tenor.com/ztEJgrjFe54AAAAC/hug-anime.gif", "https://c.tenor.com/OXCV_qL-V60AAAAC/mochi-peachcat-mochi.gif", "https://c.tenor.com/fklZNDaU9NMAAAAM/hideri-hideri-kanzaki.gif", "https://c.tenor.com/5iyMxIjFxhcAAAAC/hug-k-on.gif", "https://c.tenor.com/I6YEqtV4gv8AAAAC/anime-hug-hug.gif", "https://c.tenor.com/X5nBTYuoKpoAAAAC/anime-cheeks.gif" ]
-logger.log(`Loaded ${hugGifs.length} hugging gifs`, "debug");
+const Tenor = require('../modules/search');
+
+Tenor.startup("Anime Hug", "hug");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,7 +16,7 @@ module.exports = {
         const author = interaction.user;
         const target = interaction.options.getUser('target');
 
-        const file = hugGifs[Math.floor(Math.random() * hugGifs.length )]
+        const file = await Tenor.random("hug");
 
         if (author == target) return interaction.reply({content: `${author} hugged themself`, files: [file]});
 
