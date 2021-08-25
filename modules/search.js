@@ -20,7 +20,6 @@ exports.startup = async (query, command) => {
 			logger.debug(
 				`Loaded ${gifs[command].length} gifs for command: ${command}`
 			);
-			console.log(gifs["kiss"]);
 			return true;
 		});
 	} catch (error) {
