@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Tenor = require("../modules/search");
 
-Tenor.startup("Anime Bite", "bite");
+Tenor.startup("anime romantic bite", "bite");
 
 module.exports = {
 	data: new SlashCommandBuilder()

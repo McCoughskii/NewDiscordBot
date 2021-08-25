@@ -2,7 +2,7 @@ const { Collection } = require("discord.js");
 const logger = require("../modules/logger");
 const Tenor = require("tenorjs").client({
 	Key: "TILUSXM0LNNX",
-	Filter: "high",
+	Filter: "off",
 	Locale: "en_US",
 	MediaFilter: "basic",
 	DateFormat: "D/MM/YYYY - H:mm:ss A",
@@ -20,6 +20,7 @@ exports.startup = async (query, command) => {
 			logger.debug(
 				`Loaded ${gifs[command].length} gifs for command: ${command}`
 			);
+			console.log(gifs["kiss"]);
 			return true;
 		});
 	} catch (error) {
