@@ -18,12 +18,12 @@ module.exports = {
 		const dogFiles = [];
 
 		request(opts, async function (err, _, body) {
-            if (err) {
-                logger.log(err, "error");
-                interaction.reply("There was an error gathering the images");
-            }
-            dogFiles.push(body.url);
-            await interaction.reply({ files: dogFiles });
-        });
+			if (err) {
+				logger.log(err, "error");
+				interaction.reply("There was an error gathering the images");
+			}
+			dogFiles.push(body.url);
+			await interaction.reply({ files: dogFiles });
+		});
 	},
 };

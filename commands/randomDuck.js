@@ -18,12 +18,12 @@ module.exports = {
 		const duckFiles = [];
 
 		request(opts, async function (err, _, body) {
-            if (err) {
-                logger.log(err, "error");
-                interaction.reply("There was an error gathering the images");
-            }
-            duckFiles.push(body.url);
-            await interaction.reply({ files: duckFiles });
-        });
+			if (err) {
+				logger.log(err, "error");
+				interaction.reply("There was an error gathering the images");
+			}
+			duckFiles.push(body.url);
+			await interaction.reply({ files: duckFiles });
+		});
 	},
 };

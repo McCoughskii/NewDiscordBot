@@ -12,7 +12,7 @@ const gifs = new Array();
 
 exports.startup = async (query, command) => {
 	try {
-        gifs[command] = new Array;
+		gifs[command] = new Array();
 		await Tenor.Search.Query(query, 50).then((Results) => {
 			for (const post of Results) {
 				gifs[command].push(post.media[0].gif.url);

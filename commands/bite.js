@@ -1,26 +1,33 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Tenor = require("../modules/search");
 
-Tenor.startup("Anime Bite", "bite")
+Tenor.startup("Anime Bite", "bite");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('bite')
-        .setDescription("bite someone")
-        .addUserOption( option => 
-            option.setName('target')
-            .setDescription('person you want to bite')
-            .setRequired(true),
-        ),
-    async execute(interaction) {
-        const author = interaction.user;
-        const target = interaction.options.getUser('target');
+	data: new SlashCommandBuilder()
+		.setName("bite")
+		.setDescription("bite someone")
+		.addUserOption((option) =>
+			option
+				.setName("target")
+				.setDescription("person you want to bite")
+				.setRequired(true)
+		),
+	async execute(interaction) {
+		const author = interaction.user;
+		const target = interaction.options.getUser("target");
 
-        const file = Tenor.random("bite");
+		const file = await Tenor.random("bite");
 
-        if (author == target) return interaction.reply({content: `${author} bit themself`, files: [file]});
+		if (author == target)
+			return interaction.reply({
+				content: `${author} bit themself`,
+				files: [file],
+			});
 
-        interaction.reply({content: `${author} bit ${target}`, files: [file]});
-        
-    },
-}
+		interaction.reply({
+			content: `${author} bit ${target}`,
+			files: [file],
+		});
+	},
+};
