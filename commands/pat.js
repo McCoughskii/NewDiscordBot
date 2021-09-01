@@ -25,7 +25,7 @@ module.exports = {
 				files: [file],
 			});
 
-		interaction.reply({
+		await interaction.reply({
 			content: `${author} gave pats to ${target}`,
 			files: [file],
 		});

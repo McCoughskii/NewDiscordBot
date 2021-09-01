@@ -9,5 +9,10 @@
     "moment": "^2.29.1",
     "request": "^2.88.2",
     "tenorjs": "^1.0.8"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "jest": "^27.0.6",
+    "mocha": "^9.1.0"
   }
 }

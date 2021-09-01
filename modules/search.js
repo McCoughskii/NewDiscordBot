@@ -17,9 +17,7 @@ exports.startup = async (query, command) => {
 			for (const post of Results) {
 				gifs[command].push(post.media[0].gif.url);
 			}
-			logger.debug(
-				`Loaded ${gifs[command].length} gifs for command: ${command}`
-			);
+			logger.debug(`Loaded ${gifs[command].length} gifs for command: ${command}`);
 			return true;
 		});
 	} catch (error) {
@@ -36,3 +34,7 @@ exports.random = async (command) => {
 		console.log(error);
 	}
 };
+
+exports.test = async () => {
+	return gifs;
+}
