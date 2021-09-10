@@ -32,3 +32,7 @@ exports.random = async (command) => {
 		return null;
 	}
 };
+
+exports.debug = async (command) => {
+	console.log(gifs);
+};
