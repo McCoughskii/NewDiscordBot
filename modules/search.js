@@ -1,7 +1,6 @@
-const { Collection } = require("discord.js");
 const logger = require("../modules/logger");
 const Tenor = require("tenorjs").client({
-	Key: "TILUSXM0LNNX",
+	Key: process.env.TENOR_KEY,
 	Filter: "off",
 	Locale: "en_US",
 	MediaFilter: "basic",
@@ -18,11 +17,9 @@ exports.startup = async (query, command) => {
 				gifs[command].push(post.media[0].gif.url);
 			}
 			logger.debug(`Loaded ${gifs[command].length} gifs for command: ${command}`);
-			return true;
 		});
 	} catch (error) {
-		console.log(error);
-		return false;
+		logger.error(error);
 	}
 };
 
@@ -31,10 +28,7 @@ exports.random = async (command) => {
 		let index = Math.floor(Math.random() * 50);
 		return await gifs[command][index];
 	} catch (error) {
-		console.log(error);
+		logger.error(error);
+		return null;
 	}
 };
-
-exports.test = async () => {
-	return gifs;
-}

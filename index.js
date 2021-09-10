@@ -11,7 +11,6 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
 client.commands = new Collection();
 
 const logger = require('./modules/logger');
-client.logger = logger;
 
 const TOKEN = process.env.TOKEN;
 
@@ -22,7 +21,6 @@ const commands = [];
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
-// Place your client and guild ids here
 const clientId = '611657983956484221';
 const guildId = '877337067158392863';
 
@@ -65,8 +63,7 @@ const rest = new REST({ version: '9' }).setToken(TOKEN);
 })();
 
 client.on('interactionCreate', async interaction =>{
-    if (interaction.isCommand()) await runCommand(interaction);
-    if (interaction.isButton()) await runButton(interaction);
+    if (interaction.isCommand()) runCommand(interaction);
 });
 
 async function runCommand(interaction){
