@@ -55,7 +55,6 @@ const rest = new REST({ version: '9' }).setToken(TOKEN);
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
-
 		logger.log('Successfully reloaded application (/) commands.', 'log');
 	} catch (error) {
 		logger.log(error, "error");

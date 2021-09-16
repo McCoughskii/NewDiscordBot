@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Tenor = require("../modules/search");
 
-Tenor.startup("Anime nose poke", "boop");
+Tenor.startup("Anime nose boop", "boop");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -23,9 +23,11 @@ module.exports = {
 		if (author == target) {
 			content = `${author} booped themself`;
 		} else {
-			content = `${target} booped ${target}`;
+			content = `${author} booped ${target}`;
 		}
 
-		interaction.reply({ content: content, files: [file] });
+		interaction.reply({ content: `${content}` }).catch((err) => {console.log(err)});
+		interaction.channel.send({ content: await file});
+
 	},
 };

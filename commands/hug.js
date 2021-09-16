@@ -13,21 +13,20 @@ module.exports = {
 				.setDescription("person you want to hug")
 				.setRequired(true)
 		),
-	async execute(interaction) {
-		const author = interaction.user;
-		const target = interaction.options.getUser("target");
-
-		const file = await Tenor.random("hug");
-
-		if (author == target)
-			return interaction.reply({
-				content: `${author} hugged themself`,
-				files: [file],
-			});
-
-		await interaction.reply({
-			content: `${author} hugged ${target}`,
-			files: [file],
-		});
-	},
+		async execute(interaction) {
+			const author = interaction.user;
+			const target = interaction.options.getUser("target");
+			let content = "";
+	
+			const file = await Tenor.random("hug");
+	
+			if (author == target) {
+				content = `${author} hugged themself`;
+			} else {
+				content = `${author} hugged ${target}`;
+			}
+	
+			interaction.reply({ content: `${content}` }).catch((err) => {console.log(err);});
+			interaction.channel.send({ content: await file });
+		},
 };

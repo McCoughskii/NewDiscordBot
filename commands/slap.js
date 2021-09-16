@@ -16,18 +16,17 @@ module.exports = {
 	async execute(interaction) {
 		const author = interaction.user;
 		const target = interaction.options.getUser("target");
+		let content = "";
 
 		const file = await Tenor.random("slap");
 
-		if (author == target)
-			return interaction.reply({
-				content: `${author} slapped themself`,
-				files: [file],
-			});
+		if (author == target) {
+			content = `${author} slapped themself`;
+		} else {
+			content = `${author} slapped ${target}`;
+		}
 
-		await interaction.reply({
-			content: `${author} slapped ${target}`,
-			files: [file],
-		});
+		interaction.reply({ content: `${content}` }).catch((err) => {console.log(err)});
+		interaction.channel.send({ content: await file });
 	},
 };

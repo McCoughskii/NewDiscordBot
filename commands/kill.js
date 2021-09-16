@@ -13,21 +13,20 @@ module.exports = {
 				.setDescription("person you want to kill")
 				.setRequired(true)
 		),
-	async execute(interaction) {
-		const author = interaction.user;
-		const target = interaction.options.getUser("target");
-
-		const file = await Tenor.random("kill");
-
-		if (author == target)
-			return interaction.reply({
-				content: `${author} killed themself`,
-				files: [file],
-			});
-
-		await interaction.reply({
-			content: `${author} killed ${target}`,
-			files: [file],
-		});
-	},
+		async execute(interaction) {
+			const author = interaction.user;
+			const target = interaction.options.getUser("target");
+			let content = "";
+	
+			const file = await Tenor.random("kill");
+	
+			if (author == target) {
+				content = `${author} killed themself`;
+			} else {
+				content = `${author} killed ${target}`;
+			}
+	
+			interaction.reply({ content: `${content}` }).catch((err) => {console.log(err);});
+			interaction.channel.send({ content: await file });
+		},
 };
