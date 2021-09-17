@@ -26,7 +26,7 @@ module.exports = {
 			content = `${author} pat ${target}`;
 		}
 
-		interaction.reply({ content: `${content}` }).catch((err) => {console.log(err)});
-		interaction.channel.send({ content: await file });
+		await interaction.reply({ content: `${content}` }).catch((err) => {console.log(err)});
+		await interaction.channel.send({ content: await file });
 	},
 };
