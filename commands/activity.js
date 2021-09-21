@@ -21,13 +21,6 @@ module.exports = {
                 ["Betrayal.io", "betrayal-io"],
                 ["Fishington.io", "fishington-io"],
             ])
-            // .addChoices({
-            //     "Youtube-Toghether": "youtube-togehter", 
-            //     "Poker Night": "poker-night", 
-            //     "Chess in the park": "chess-in-the-park", 
-            //     "Betrayal.io": "betrayal.io",
-            //     "Fishington.io": "fishington.io",
-            // })
         ),
 	async execute(interaction) {
         const VoiceChannel = interaction.options.getChannel("channel");
