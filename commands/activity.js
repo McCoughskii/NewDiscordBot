@@ -32,7 +32,7 @@ module.exports = {
 
         switch (activity) {
             case "youtube-togehter":
-                game = "755600276941176913";
+                game = "880218394199220334";
                 break;
             case "poker-night":
                 game = "755827207812677713";
